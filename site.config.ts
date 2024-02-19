@@ -17,7 +17,7 @@ export default siteConfig({
   description: 'Format and distribute Notion content easily. Supports WeChat and more. Enhance your productivity.',
 
   // social usernames (optional)
-  twitter: 'notion-nice',
+  twitter: 'notion_nice',
   github: 'notion-nice',
   // linkedin: 'fisch2',
   // mastodon: '#', // optional mastodon profile URL, provides link verification
