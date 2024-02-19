@@ -4,7 +4,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 
 module.exports = withBundleAnalyzer({
-  output: "standalone",
+  // output: "standalone", // 不支持镜像打包
   staticPageGenerationTimeout: 300,
   images: {
     domains: [
