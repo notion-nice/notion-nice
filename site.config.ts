@@ -11,7 +11,7 @@ export default siteConfig({
   // basic site info (required)
   name: 'Notion Nice',
   domain: 'notion-nice.com',
-  author: 'Seng Mitnick',
+  author: 'Notion Nice',
 
   // open graph metadata (optional)
   description: 'Format and distribute Notion content easily. Supports WeChat and more. Enhance your productivity.',
