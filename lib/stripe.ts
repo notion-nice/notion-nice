@@ -1,6 +1,10 @@
 import { Stripe } from 'stripe'
 
-if (!process.env.STRIPE_SECRET_KEY || !process.env.STRIPE_PUBLISHABLE_KEY) {
+if (
+  !process.env.STRIPE_SECRET_KEY ||
+  !process.env.STRIPE_PUBLISHABLE_KEY ||
+  !process.env.STRIPE_PRICE_ID
+) {
   console.log(
     'The .env file is not configured. Follow the instructions in the readme to configure the .env file. https://github.com/stripe-samples/subscription-use-cases'
   )
@@ -13,6 +17,9 @@ if (!process.env.STRIPE_SECRET_KEY || !process.env.STRIPE_PUBLISHABLE_KEY) {
     ? ''
     : console.log('Add STRIPE_PUBLISHABLE_KEY to your .env file.')
 
+  process.env.STRIPE_PRICE_ID
+    ? ''
+    : console.log('Add STRIPE_PRICE_ID to your .env file.')
   process.exit()
 }
 
