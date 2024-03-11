@@ -17,3 +17,10 @@ if (!process.env.STRIPE_SECRET_KEY || !process.env.STRIPE_PUBLISHABLE_KEY) {
 }
 
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+
+export const getCustomer = async (userId: string) => {
+  const customer = await stripe.customers.search({
+    query: `metadata['notion-user-id']:'${userId}'`
+  })
+  return customer.data[0]
+}

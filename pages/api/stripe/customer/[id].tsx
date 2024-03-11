@@ -1,12 +1,5 @@
-import { stripe } from '@/lib/stripe'
+import { getCustomer, stripe } from '@/lib/stripe'
 import { NextApiRequest, NextApiResponse } from 'next'
-
-const getCustomer = async (userId: string) => {
-  const customer = await stripe.customers.search({
-    query: `metadata['notion-user-id']:'${userId}'`
-  })
-  return customer.data[0]
-}
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {

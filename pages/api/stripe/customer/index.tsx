@@ -1,4 +1,4 @@
-import { stripe } from '@/lib/stripe'
+import { getCustomer, stripe } from '@/lib/stripe'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -7,22 +7,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
   try {
     const { userId, email, name } = req.body
-    let customerId = ''
-    const customers = await stripe.customers.search({
-      query: `metadata['notion-user-id']:'${userId}'`
-    })
-    if (customers.data?.length) {
-      customerId = customers.data[0].id
-    } else {
-      const customer = await stripe.customers.create({
+    let customer = await getCustomer(userId)
+    if (!customer) {
+      customer = await stripe.customers.create({
         name,
         email,
         metadata: { 'notion-user-id': userId }
       })
-      customerId = customer.id
     }
 
-    return res.send({ customerId })
+    return res.send({ customer })
   } catch (error) {
     return res.status(400).send({ error: { message: error.message } })
   }
