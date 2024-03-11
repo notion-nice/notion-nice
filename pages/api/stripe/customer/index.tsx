@@ -16,8 +16,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       })
     }
 
-    return res.send({ customer })
+    return res.send({ ok: true, customer })
   } catch (error) {
-    return res.status(400).send({ error: { message: error.message } })
+    return res.send({ ok: false, error: { message: error.message } })
   }
 }
