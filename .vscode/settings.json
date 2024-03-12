@@ -33,5 +33,6 @@
     "**/.now/": true,
     "**/.vercel/": true,
     "**/.google.json": true
-  }
+  },
+  "deepscan.enable": true
 }

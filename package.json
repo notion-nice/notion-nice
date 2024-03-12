@@ -10,7 +10,7 @@
     "node": ">=16"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 4242",
     "build": "next build",
     "start": "next start",
     "deploy": "vercel deploy",
@@ -20,6 +20,7 @@
     "analyze": "cross-env ANALYZE=true next build",
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
     "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build",
+    "test:stripe": "stripe listen --skip-verify --forward-to localhost:4242/api/stripe/webhook",
     "test": "run-p test:*",
     "test:lint": "eslint '**/*.{ts,tsx}'",
     "test:prettier": "prettier '**/*.{js,jsx,ts,tsx}' --check"
@@ -37,6 +38,7 @@
     "fathom-client": "^3.4.1",
     "got": "^12.0.3",
     "isomorphic-unfetch": "^3.1.0",
+    "lodash-es": "^4.17.21",
     "lqip-modern": "^2.0.0",
     "next": "12",
     "notion-client": "^6.15.6",
@@ -57,6 +59,7 @@
   "devDependencies": {
     "@next/bundle-analyzer": "^12.3.1",
     "@trivago/prettier-plugin-sort-imports": "^3.3.1",
+    "@types/lodash-es": "^4.17.12",
     "@types/node": "^18.8.5",
     "@types/react": "^18.0.21",
     "@typescript-eslint/eslint-plugin": "^5.40.0",

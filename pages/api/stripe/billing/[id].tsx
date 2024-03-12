@@ -16,20 +16,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (!customerId) {
       return res.send({ ok: false, error: { message: '用户不存在' } })
     }
-    const session = await stripe.checkout.sessions.create({
-      line_items: [
-        {
-          price: process.env.STRIPE_PRICE_ID,
-          quantity: 1
-        }
-      ],
-      metadata: {
-        type: 'upgrade_plus_year'
-      },
-      mode: 'payment',
+    const session = await stripe.billingPortal.sessions.create({
       customer: customerId,
-      success_url: `${DOMAIN}?payment_attempt_state=succeeded`,
-      cancel_url: `${DOMAIN}?payment_attempt_state=canceled`
+      return_url: DOMAIN
     })
 
     return res.send({ ok: true, url: session.url })

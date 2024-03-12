@@ -1,4 +1,5 @@
-import { Stripe } from 'stripe'
+import { isString } from 'lodash-es'
+import Stripe from 'stripe'
 
 if (
   !process.env.STRIPE_SECRET_KEY ||
@@ -29,5 +30,24 @@ export const getCustomer = async (userId: string) => {
   const customer = await stripe.customers.search({
     query: `metadata['notion-user-id']:'${userId}'`
   })
+  console.log('getCustomer', userId, customer.data[0]?.id)
+
   return customer.data[0]
+}
+
+export const handlePaymentIntent = async (
+  stripeObject: Stripe.PaymentIntent
+) => {
+  console.log('handlePaymentIntent', JSON.stringify(stripeObject, null, 2))
+  let customer: Stripe.Customer
+  if (isString(stripeObject.customer)) {
+    customer = (await stripe.customers.retrieve(stripeObject.customer)) as any
+  } else {
+    customer = stripeObject.customer as Stripe.Customer
+  }
+  customer = await stripe.customers.update(customer.id, {
+    metadata: { plan_type: 'plus' }
+  })
+
+  return customer
 }
