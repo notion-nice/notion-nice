@@ -26,9 +26,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     // Cast event data to Stripe object
     if (event.type === 'payment_intent.succeeded') {
       handlePaymentIntent(event.data.object)
-    } else if (event.type === 'charge.succeeded') {
-      const charge = event.data.object as Stripe.Charge
-      console.log(`💵 Charge id: ${charge.id}`)
+    } else if (event.type === 'customer.created') {
+      // event.data.object.metadata
     } else {
       console.warn(`🤷‍♀️ Unhandled event type: ${event.type}`)
     }
