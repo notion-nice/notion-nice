@@ -14,9 +14,6 @@ dependencies:
   '@keyvhq/redis':
     specifier: ^1.6.10
     version: 1.6.28
-  '@react-icons/all-files':
-    specifier: ^4.1.0
-    version: 4.1.0(react@18.2.0)
   '@vercel/og':
     specifier: ^0.0.19
     version: 0.0.19
@@ -80,6 +77,9 @@ dependencies:
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
+  react-icons:
+    specifier: 4.8.1-snapshot.1
+    version: 4.8.1-snapshot.1(react@18.2.0)
   react-notion-x:
     specifier: ^6.15.6
     version: 6.16.0(@babel/runtime@7.24.0)(@types/react@18.2.64)(react-dom@18.2.0)(react@18.2.0)(webpack@5.90.3)
@@ -668,14 +668,6 @@ packages:
   /@polka/url@1.0.0-next.25:
     resolution: {integrity: sha512-j7P6Rgr3mmtdkeDGTe0E/aYyWEWVtc5yFXtHCRHs28/jptDEWfaVOc5T7cblqy1XKPPfCxJc/8DwQ5YgLOZOVQ==}
     dev: true
-
-  /@react-icons/all-files@4.1.0(react@18.2.0):
-    resolution: {integrity: sha512-hxBI2UOuVaI3O/BhQfhtb4kcGn9ft12RWAFVMUeNjqqhLsHvFtzIkFaptBJpFDANTKoDfdVoHTKZDlwKCACbMQ==}
-    peerDependencies:
-      react: '*'
-    dependencies:
-      react: 18.2.0
-    dev: false
 
   /@resvg/resvg-wasm@2.0.0-alpha.4:
     resolution: {integrity: sha512-pWIG9a/x1ky8gXKRhPH1OPKpHFoMN1ISLbJ+O+gPXQHIAKhNd5I28RlWf7q576hAOQA9JZTlo3p/M2uyLzJmmw==}
@@ -3637,6 +3629,14 @@ packages:
       hotkeys-js: 3.9.4
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /react-icons@4.8.1-snapshot.1(react@18.2.0):
+    resolution: {integrity: sha512-ibe3enpOkR3VVeQiP4p/n+8GIrcrwE+dmkvNlP2XXYT84LlKfSSczdZeBb4hhp/B/4VIRUdaWuLCCOKngZbwqw==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-image@4.1.0(@babel/runtime@7.24.0)(react-dom@18.2.0)(react@18.2.0):
