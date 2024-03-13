@@ -2,9 +2,7 @@ import { handlePaymentIntent, stripe } from '@/lib/stripe'
 import { NextApiRequest, NextApiResponse } from 'next'
 import Stripe from 'stripe'
 
-const webhookSecret =
-  process.env.STRIPE_WEBHOOK_SECRET ||
-  'whsec_79299e4b89e477180f8f5b01bbeea78c5d319389121e67f44967b8779fb19d17'
+const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
