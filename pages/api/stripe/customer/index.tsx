@@ -1,4 +1,4 @@
-import { getCustomer, stripe } from '@/lib/stripe'
+import { getCustomer, getCustomerByEmail, stripe } from '@/lib/stripe'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 const queue = new Set<string>([])
@@ -11,12 +11,17 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     let customer = await getCustomer(userId)
     if (!customer) {
+      customer = await getCustomerByEmail(email, userId, name)
+    }
+
+    if (!customer) {
       if (queue.has(userId)) {
         return res.send({
           ok: false,
           error: { message: 'customer creation in progress' }
         })
       }
+
       queue.add(userId)
       customer = await stripe.customers.create({
         name,

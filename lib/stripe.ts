@@ -31,10 +31,53 @@ export const getCustomer = async (userId: string) => {
   const ret = await stripe.customers.search({
     query: `metadata['notion-user-id']:'${userId}'`
   })
-  console.log('getCustomer', userId, ret.data[0]?.id)
 
   let customer = ret.data[0]
 
+  // 如果找到多个用户，则取已付费的用户
+  if (ret.data.length > 1) {
+    ret.data.forEach((cus) => {
+      if (cus.metadata?.plan_type === 'plus') {
+        customer = cus
+      }
+    })
+  }
+
+  return updateCustomer(customer)
+}
+
+// 针对通过 userId 获取不到用户的补充，根据邮箱进行获取，并更新对应的用户信息
+export const getCustomerByEmail = async (
+  email: string,
+  userId: string,
+  name: string
+) => {
+  const ret = await stripe.customers.search({
+    query: `email:'${email}'`
+  })
+
+  let customer = ret.data[0]
+
+  // 如果找到多个用户，则取已付费的用户
+  if (ret.data.length > 1) {
+    ret.data.forEach((cus) => {
+      if (cus.metadata?.plan_type === 'plus') {
+        customer = cus
+      }
+    })
+  }
+
+  if (customer.id) {
+    customer = await stripe.customers.update(customer.id, {
+      name,
+      metadata: { 'notion-user-id': userId }
+    })
+  }
+
+  return updateCustomer(customer)
+}
+
+const updateCustomer = async (customer: Stripe.Customer) => {
   if (customer?.id) {
     const isPlus = customer.metadata?.plan_type === 'plus'
     if (isPlus) {
