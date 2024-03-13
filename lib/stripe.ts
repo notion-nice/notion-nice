@@ -1,6 +1,7 @@
 import { isString } from 'lodash-es'
 import Stripe from 'stripe'
 import dayjs from 'dayjs'
+import { sql } from '@vercel/postgres'
 
 if (
   !process.env.STRIPE_SECRET_KEY ||
@@ -27,21 +28,23 @@ if (
 
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
-export const getCustomer = async (userId: string) => {
-  const ret = await stripe.customers.search({
-    query: `metadata['notion-user-id']:'${userId}'`
+export const createCustomer = async ({ userId, email, name }: any) => {
+  let customer = await getCustomer(userId)
+  if (customer?.id) return customer
+  customer = await stripe.customers.create({
+    name,
+    email,
+    metadata: { 'notion-user-id': userId }
   })
+  await sql`INSERT INTO users (name,email,stripe_id,notion_id) VALUES ('${name}', '${email}', '${customer.id}','${userId}');`
+  return customer
+}
 
-  let customer = ret.data[0]
+export const getCustomer = async (userId: string) => {
+  const { rows } = await sql`SELECT * FROM users WHERE notion_id='${userId}';`
+  const customerId = rows[0].stripe_id
 
-  // 如果找到多个用户，则取已付费的用户
-  if (ret.data.length > 1) {
-    ret.data.forEach((cus) => {
-      if (cus.metadata?.plan_type === 'plus') {
-        customer = cus
-      }
-    })
-  }
+  const customer = await getCustomerById(customerId)
 
   return updateCustomer(customer)
 }

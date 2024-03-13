@@ -1,4 +1,4 @@
-import { getCustomer, getCustomerByEmail, stripe } from '@/lib/stripe'
+import { createCustomer } from '@/lib/stripe'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 const queue = new Set<string>([])
@@ -9,27 +9,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
   const { userId, email, name } = req.body
   try {
-    let customer = await getCustomer(userId)
-    if (!customer) {
-      customer = await getCustomerByEmail(email, userId, name)
-    }
-
-    if (!customer) {
-      if (queue.has(userId)) {
-        return res.send({
-          ok: false,
-          error: { message: 'customer creation in progress' }
-        })
-      }
-
-      queue.add(userId)
-      customer = await stripe.customers.create({
-        name,
-        email,
-        metadata: { 'notion-user-id': userId }
+    if (queue.has(userId)) {
+      return res.send({
+        ok: false,
+        error: { message: 'customer creation in progress' }
       })
-      queue.delete(userId)
     }
+
+    queue.add(userId)
+    const customer = await createCustomer({ userId, email, name })
+    queue.delete(userId)
 
     return res.send({ ok: true, customer })
   } catch (error) {
