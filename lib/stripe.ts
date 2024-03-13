@@ -36,12 +36,12 @@ export const createCustomer = async ({ userId, email, name }: any) => {
     email,
     metadata: { 'notion-user-id': userId }
   })
-  await sql`INSERT INTO users (name,email,stripe_id,notion_id) VALUES ('${name}', '${email}', '${customer.id}','${userId}');`
+  await sql`INSERT INTO users (name,email,stripe_id,notion_id) VALUES (${name}, ${email}, ${customer.id},${userId});`
   return customer
 }
 
 export const getCustomer = async (userId: string) => {
-  const ret = await sql`SELECT * FROM users WHERE notion_id='${userId}';`
+  const ret = await sql`SELECT * FROM users WHERE notion_id=${userId};`
   console.log('getCustomer', ret, ret.rows[0])
 
   const customerId = ret.rows[0].stripe_id
