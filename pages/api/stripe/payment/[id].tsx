@@ -18,7 +18,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
     const isPlus = customer.metadata?.plan_type === 'plus'
     if (isPlus) {
-      return res.send({ ok: false, customer })
+      return res.send({ ok: false, customer, error: { message: '用户已经是 Plus 会员了' } })
     }
     const session = await stripe.checkout.sessions.create({
       line_items: [
