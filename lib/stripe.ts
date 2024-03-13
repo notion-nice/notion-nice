@@ -41,8 +41,11 @@ export const createCustomer = async ({ userId, email, name }: any) => {
 }
 
 export const getCustomer = async (userId: string) => {
-  const { rows } = await sql`SELECT * FROM users WHERE notion_id='${userId}';`
-  const customerId = rows[0].stripe_id
+  const ret = await sql`SELECT * FROM users WHERE notion_id='${userId}';`
+  console.log('getCustomer', ret, ret.rows[0])
+
+  const customerId = ret.rows[0].stripe_id
+  console.log('getCustomer', customerId)
 
   const customer = await getCustomerById(customerId)
 
