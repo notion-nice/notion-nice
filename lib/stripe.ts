@@ -67,7 +67,7 @@ export const getCustomerByEmail = async (
     })
   }
 
-  if (customer.id) {
+  if (customer?.id) {
     customer = await stripe.customers.update(customer.id, {
       name,
       metadata: { 'notion-user-id': userId }
