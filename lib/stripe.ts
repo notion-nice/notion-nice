@@ -1,5 +1,6 @@
 import { isString } from 'lodash-es'
 import Stripe from 'stripe'
+import dayjs from 'dayjs'
 
 if (
   !process.env.STRIPE_SECRET_KEY ||
@@ -27,12 +28,36 @@ if (
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 export const getCustomer = async (userId: string) => {
-  const customer = await stripe.customers.search({
+  const ret = await stripe.customers.search({
     query: `metadata['notion-user-id']:'${userId}'`
   })
-  console.log('getCustomer', userId, customer.data[0]?.id)
+  console.log('getCustomer', userId, ret.data[0]?.id)
 
-  return customer.data[0]
+  let customer = ret.data[0]
+
+  if (customer?.id) {
+    const isPlus = customer.metadata?.plan_type === 'plus'
+    if (isPlus) {
+      const createAt = dayjs(customer.metadata?.create_date)
+      const now = dayjs()
+      const diff = now.diff(createAt, 'year')
+      const diffYears = diff
+      console.log('diffYears', diffYears)
+      if (diffYears >= 1) {
+        console.log('stripe customer is expired')
+        // 保存用户曾经是 Plus 用户的标识
+        customer = await stripe.customers.update(customer.id, {
+          metadata: {
+            plan_type: 'free',
+            create_at: dayjs().toISOString(),
+            was_plus: 1
+          }
+        })
+      }
+    }
+  }
+
+  return customer
 }
 
 export const handlePaymentIntent = async (
@@ -46,7 +71,7 @@ export const handlePaymentIntent = async (
     customer = stripeObject.customer as Stripe.Customer
   }
   customer = await stripe.customers.update(customer.id, {
-    metadata: { plan_type: 'plus' }
+    metadata: { plan_type: 'plus', create_at: new Date().toISOString() }
   })
 
   return customer

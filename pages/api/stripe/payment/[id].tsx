@@ -12,9 +12,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (typeof userId !== 'string') {
       return res.send({ ok: false, error: { message: '用户不存在' } })
     }
-    const customerId = (await getCustomer(userId))?.id
-    if (!customerId) {
+    const customer = await getCustomer(userId)
+    if (!customer.id) {
       return res.send({ ok: false, error: { message: '用户不存在' } })
+    }
+    const isPlus = customer.metadata?.plan_type === 'plus'
+    if (isPlus) {
+      return res.send({ ok: false, customer })
     }
     const session = await stripe.checkout.sessions.create({
       line_items: [
@@ -27,7 +31,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         type: 'upgrade_plus_year'
       },
       mode: 'payment',
-      customer: customerId,
+      customer: customer.id,
       success_url: `${DOMAIN}?payment_attempt_state=succeeded`,
       cancel_url: `${DOMAIN}?payment_attempt_state=canceled`
     })
