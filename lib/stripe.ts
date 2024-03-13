@@ -46,6 +46,12 @@ export const getCustomer = async (userId: string) => {
   return updateCustomer(customer)
 }
 
+export const getCustomerById = async (userId: string) => {
+  const customer = (await stripe.customers.retrieve(userId)) as Stripe.Customer
+
+  return updateCustomer(customer)
+}
+
 // 针对通过 userId 获取不到用户的补充，根据邮箱进行获取，并更新对应的用户信息
 export const getCustomerByEmail = async (
   email: string,
