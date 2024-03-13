@@ -36,7 +36,7 @@ export const createCustomer = async ({ userId, email, name }: any) => {
     email,
     metadata: { 'notion-user-id': userId }
   })
-  await sql`INSERT INTO users (name,email,stripe_id,notion_id) VALUES (${name}, ${email}, ${customer.id},${userId});`
+  await sql`INSERT INTO users (id,name,email,stripe_id,notion_id) VALUES (gen_random_uuid(),${name},${email},${customer.id},${userId});`
   return customer
 }
 
