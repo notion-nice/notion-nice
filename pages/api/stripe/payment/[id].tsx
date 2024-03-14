@@ -12,6 +12,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (typeof userId !== 'string') {
       return res.send({ ok: false, error: { message: '参数异常', userId } })
     }
+    if (!userId.startsWith('cus_')) {
+      return res.send({ ok: false, error: { message: '参数异常', userId } })
+    }
     const customer = await getCustomerById(userId)
     if (!customer?.id) {
       return res.send({ ok: false, error: { message: '用户不存在', userId } })
