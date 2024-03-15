@@ -130,9 +130,11 @@ export const handlePaymentIntent = async (
   } else {
     customer = stripeObject.customer as Stripe.Customer
   }
-  customer = await stripe.customers.update(customer.id, {
-    metadata: { plan_type: 'plus', create_at: new Date().toISOString() }
-  })
+  if (customer.id) {
+    customer = await stripe.customers.update(customer.id, {
+      metadata: { plan_type: 'plus', create_at: new Date().toISOString() }
+    })
+  }
 
   return customer
 }
