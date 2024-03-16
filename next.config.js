@@ -27,7 +27,10 @@ module.exports = withBundleAnalyzer({
         source: '/api/v1/:path*',
         headers: [
           { key: 'Access-Control-Allow-Credentials', value: 'true' },
-          { key: 'Access-Control-Allow-Origin', value: '*' }, // replace this your actual origin
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: 'https://notion-nice.com'
+          },
           {
             key: 'Access-Control-Allow-Methods',
             value: 'GET,DELETE,PATCH,POST,PUT'
@@ -43,7 +46,7 @@ module.exports = withBundleAnalyzer({
         // matching all API routes
         source: '/api/stripe/:path*',
         headers: [
-          { key: 'Access-Control-Allow-Origin', value: 'chrome-extension://*' }, // replace this your actual origin
+          { key: 'Access-Control-Allow-Origin', value: 'chrome-extension://*' },
           {
             key: 'Access-Control-Allow-Methods',
             value: 'GET,DELETE,PATCH,POST,PUT'

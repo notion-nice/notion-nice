@@ -29,9 +29,6 @@
     "@fisch0920/use-dark-mode": "^2.4.0",
     "@keyvhq/core": "^1.6.9",
     "@keyvhq/redis": "^1.6.10",
-    "@sitdown/juejin": "^1.1.1",
-    "@sitdown/wechat": "^1.1.1",
-    "@sitdown/zhihu": "^1.1.1",
     "@tryfabric/martian": "^1.2.4",
     "@vercel/og": "^0.0.19",
     "@vercel/postgres": "^0.7.2",
@@ -45,7 +42,6 @@
     "lodash-es": "^4.17.21",
     "lqip-modern": "^2.0.0",
     "next": "12",
-    "next-swagger-doc": "^0.4.0",
     "notion-client": "^6.15.6",
     "notion-types": "^6.15.6",
     "notion-utils": "^6.15.6",
@@ -60,9 +56,7 @@
     "react-tweet-embed": "^2.0.0",
     "react-use": "^17.4.2",
     "rss": "^1.2.2",
-    "sitdown": "^1.1.1",
-    "stripe": "^14.20.0",
-    "swagger-ui-react": "^5.12.0"
+    "stripe": "^14.20.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^12.3.1",
