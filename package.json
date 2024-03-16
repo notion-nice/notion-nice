@@ -55,6 +55,7 @@
     "react-tweet-embed": "^2.0.0",
     "react-use": "^17.4.2",
     "rss": "^1.2.2",
+    "sitdown": "^1.1.7",
     "stripe": "^14.20.0"
   },
   "devDependencies": {
