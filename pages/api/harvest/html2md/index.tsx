@@ -7,7 +7,18 @@ import { markdownToBlocks } from '@tryfabric/martian'
  * /api/harvest/html2md:
  *   post:
  *     description: Html to Markdown and Markdown to Notion API Blocks
- *     
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           type: object
+ *           properties:
+ *             html:
+ *               type: string
+ *             source:
+ *               type: string
+ *             to_block:
+ *               type: boolean
  *     responses:
  *       200:
  *         description: Markdown or Notion API Blocks
