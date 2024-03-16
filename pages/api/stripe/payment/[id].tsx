@@ -51,6 +51,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         },
         mode: 'payment',
         customer: customer.id,
+        payment_method_types: ['alipay', 'card'],
         success_url: `${DOMAIN}?payment_attempt_state=succeeded`,
         cancel_url: `${DOMAIN}?payment_attempt_state=canceled`
       })
