@@ -4,6 +4,11 @@ import { NextApiRequest, NextApiResponse } from 'next'
 const DOMAIN = 'https://www.notion.so/'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+  if (req.method === 'OPTIONS') {
+    res.status(200).end()
+    return
+  }
+  
   const userId = req.query.id
   if (req.method === 'GET') {
     try {

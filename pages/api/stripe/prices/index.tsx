@@ -2,6 +2,11 @@ import { stripe } from '@/lib/stripe'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+  if (req.method === 'OPTIONS') {
+    res.status(200).end()
+    return
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).send({ error: 'method not allowed' })
   }

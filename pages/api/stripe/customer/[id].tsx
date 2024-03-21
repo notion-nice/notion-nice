@@ -2,6 +2,10 @@ import { getCustomer, stripe } from '@/lib/stripe'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+  if (req.method === 'OPTIONS') {
+    res.status(200).end()
+    return
+  }
   if (req.method === 'GET') {
     try {
       const userId = req.query.id
