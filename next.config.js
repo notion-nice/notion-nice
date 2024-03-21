@@ -46,7 +46,7 @@ module.exports = withBundleAnalyzer({
         // matching all API routes
         source: '/api/stripe/:path*',
         headers: [
-          { key: 'Access-Control-Allow-Origin', value: 'chrome-extension://*' },
+          { key: 'Access-Control-Allow-Origin', value: '*' },
           {
             key: 'Access-Control-Allow-Methods',
             value: 'GET,DELETE,PATCH,POST,PUT'
