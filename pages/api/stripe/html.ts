@@ -10,7 +10,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(405).send({ error: 'method not allowed' })
   }
   try {
-    const response = await fetch(req.body.exportURL)
+    const response = await fetch(req.body.exportURL, {
+      headers: {
+        cookie: req.headers.cookie
+      }
+    })
     if (!response.ok) {
       console.log(response)
       res.send({ ok: false, error: 'Failed to download file' })
