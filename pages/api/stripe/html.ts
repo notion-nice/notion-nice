@@ -12,6 +12,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const response = await fetch(req.body.exportURL)
     if (!response.ok) {
+      console.log(response)
       res.send({ ok: false, error: 'Failed to download file' })
       return
     }
