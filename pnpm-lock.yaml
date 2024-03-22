@@ -38,6 +38,9 @@ dependencies:
   fathom-client:
     specifier: ^3.4.1
     version: 3.6.0
+  fflate:
+    specifier: ^0.8.2
+    version: 0.8.2
   got:
     specifier: ^12.0.3
     version: 12.6.1
@@ -2191,6 +2194,10 @@ packages:
 
   /fflate@0.7.4:
     resolution: {integrity: sha512-5u2V/CDW15QM1XbbgS+0DfPxVB+jUKhWEKuuFuHncbk3tEEqzmoXL+2KyOFuKGqOnmdIy0/davWF1CkuwtibCw==}
+    dev: false
+
+  /fflate@0.8.2:
+    resolution: {integrity: sha512-cPJU47OaAoCbg0pBvzsgpTPhmhqI5eJjh/JIu8tPj5q+T7iLvW/JAYUqmE7KOB4R1ZyEhzBaIQpQpardBF5z8A==}
     dev: false
 
   /file-entry-cache@6.0.1:
