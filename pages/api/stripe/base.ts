@@ -7,7 +7,8 @@ const comboList = {
     '文章一键排版到公号等平台',
     '不支持上传图片'
   ],
-  plus: ['支持无限制图片上传', '访问额外的实验性功能（开发中）']
+  plus: ['支持无限制图片上传', '访问额外的实验性功能（开发中）'],
+  pro: ['使用 Harvest 快速收藏并分析文章', '访问额外的AI实验性功能']
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
