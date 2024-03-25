@@ -8,7 +8,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(200).end()
     return
   }
-  
+
   const userId = req.query.id
   if (req.method === 'GET') {
     try {
@@ -61,6 +61,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         success_url: `${DOMAIN}?payment_attempt_state=succeeded`,
         cancel_url: `${DOMAIN}?payment_attempt_state=canceled`
       })
+
+      console.log('session', userId, session)
 
       return res.send({ ok: true, url: session.url })
     } catch (error) {
