@@ -14,7 +14,8 @@ export default siteConfig({
   author: 'Notion Nice',
 
   // open graph metadata (optional)
-  description: 'Format and distribute Notion content easily. Supports WeChat and more. Enhance your productivity.',
+  description:
+    'Format and distribute Notion content easily. Supports WeChat and more. Enhance your productivity.',
 
   // social usernames (optional)
   twitter: 'notion_nice',
@@ -43,7 +44,8 @@ export default siteConfig({
   // example:
   //
   pageUrlOverrides: {
-    '/privacy': '94d0ba8c65ea40e2b6455b8d1037752e'
+    '/privacy': '94d0ba8c65ea40e2b6455b8d1037752e',
+    '/changelog': '7cf2ecce1b4447a78ee8871a72778dc5'
   },
 
   // whether to use the default notion navigation style or a custom one with links to
