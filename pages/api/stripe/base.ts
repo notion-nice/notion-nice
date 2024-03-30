@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-const notionClientVersion = '23.13.0.152'
+const notionClientVersion = '23.13.0.157'
 const comboList = {
   free: [
     '增添 Notion 文章大纲目录',
