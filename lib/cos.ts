@@ -1,4 +1,4 @@
-import COS from 'cos-js-sdk-v5'
+import COS from 'cos-nodejs-sdk-v5'
 import { v4 as uuid } from 'uuid'
 
 if (
