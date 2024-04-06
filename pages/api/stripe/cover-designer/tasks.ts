@@ -44,10 +44,17 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       }
     ).then((res) => res.json())
     const task_status = ret.output.task_status
+    if (task_status === 'FAILED') {
+      return res.send({
+        ok: false,
+        task_status,
+        error: { ...ret.output }
+      })
+    }
     if (task_status === 'SUCCEEDED') {
       const results = ret.output.results || []
       if (results[0]?.code) {
-        return res.send({ ok: true, task_status, code: results[0].code })
+        return res.send({ ok: false, task_status, code: results[0].code })
       }
       let url = results[0]?.url || ''
       if (url) {
