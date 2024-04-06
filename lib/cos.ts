@@ -45,13 +45,14 @@ export const uploadCover = async (pageId: string, url: string) => {
       throw new Error('Failed to download file')
     }
     const blob = await response.blob()
-    const file = new File([blob], blockId)
+    const arrayBuffer = await new Response(blob).arrayBuffer()
+    const buffer = Buffer.from(arrayBuffer)
     const Key = `cover/${pageId}/${blockId}.png`
     await cos.putObject({
       Bucket: Bucket,
       Region: Region,
       Key,
-      Body: file
+      Body: buffer
     })
     const newUrl = `${COS_URL}/${Key}`
     return { ok: true, url: newUrl }
