@@ -26,7 +26,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
   const query = req.body.query
   if (!query) {
-    return res.status(401).send({ error: 'no query' })
+    return res.send({ ok: false, error: { message: 'no query' } })
   }
   try {
     const ret = await fetch(`https://api.coze.cn/open_api/v2/chat`, {

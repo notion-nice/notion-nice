@@ -25,7 +25,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
   const prompt = req.body.prompt
   if (!prompt) {
-    return res.status(401).send({ error: 'no prompt' })
+    return res.send({ ok: false, error: { message: 'no prompt' } })
   }
   try {
     const ret = await fetch(

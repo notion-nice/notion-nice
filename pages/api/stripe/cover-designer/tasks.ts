@@ -27,10 +27,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const task_id = req.body.task_id
   const pageId = req.body.page_id
   if (!task_id) {
-    return res.status(401).send({ error: 'no task_id' })
+    return res.send({ ok: false, error: { message: 'no task_id' } })
   }
   if (!pageId) {
-    return res.status(401).send({ error: 'no page_id' })
+    return res.send({ ok: false, error: { message: 'no page_id' } })
   }
   try {
     const ret = await await fetch(
