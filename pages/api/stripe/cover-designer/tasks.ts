@@ -1,4 +1,3 @@
-import { uploadCover } from '@/lib/cos'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 if (!process.env.COZE_API_KEY || !process.env.DASHSCOPE_API_KEY) {
@@ -25,12 +24,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(405).send({ error: 'method not allowed' })
   }
   const task_id = req.body.task_id
-  const pageId = req.body.page_id
   if (!task_id) {
     return res.send({ ok: false, error: { message: 'no task_id' } })
-  }
-  if (!pageId) {
-    return res.send({ ok: false, error: { message: 'no page_id' } })
   }
   try {
     const ret = await await fetch(
@@ -56,15 +51,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       if (results[0]?.code) {
         return res.send({ ok: false, task_status, code: results[0].code })
       }
-      let url = results[0]?.url || ''
-      if (url) {
-        const result = await uploadCover(pageId, url)
-        if (!result.ok) {
-          return res.send({ ok: false, task_status, error: result })
-        }
-        url = result.url!
-      }
-
+      const url = results[0]?.url || ''
       return res.send({ ok: true, task_status, url })
     }
     return res.send({ ok: true, task_status })
