@@ -58,7 +58,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       }
       let url = results[0]?.url || ''
       if (url) {
-        url = await uploadCover(pageId, url)
+        const result = await uploadCover(pageId, url)
+        if (!result.ok) {
+          return res.send({ ok: false, task_status, error: result })
+        }
+        url = result.url!
       }
 
       return res.send({ ok: true, task_status, url })

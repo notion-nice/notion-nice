@@ -56,6 +56,8 @@ export const uploadCover = async (pageId: string, url: string) => {
     const newUrl = `${COS_URL}/${Key}`
     return { ok: true, url: newUrl }
   } catch (error) {
+    console.log(error)
+
     return { ok: false, error }
   }
 }
