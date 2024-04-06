@@ -26,6 +26,9 @@ dependencies:
   classnames:
     specifier: ^2.3.1
     version: 2.5.1
+  cos-js-sdk-v5:
+    specifier: ^1.7.0
+    version: 1.7.0
   date-fns:
     specifier: ^2.28.0
     version: 2.30.0
@@ -1191,6 +1194,11 @@ packages:
       '@xtuc/long': 4.2.2
     dev: false
 
+  /@xmldom/xmldom@0.8.10:
+    resolution: {integrity: sha512-2WALfTl4xo2SkGCYRt6rDTFfk9R1czmBvUQy12gK2KuRKIpWEhcbbzy8EZXtz/jkRqHX8bFEc6FC1HjX4TUWYw==}
+    engines: {node: '>=10.0.0'}
+    dev: false
+
   /@xobotyi/scrollbar-width@1.9.5:
     resolution: {integrity: sha512-N8tkAACJx2ww8vFMneJmaAgmjAG1tnVBZJRLRcx061tmsLRZHSEZSLuGWnwPtunsSLvSqXQ2wfp7Mgqg1I+2dQ==}
     dev: false
@@ -1645,6 +1653,12 @@ packages:
     resolution: {integrity: sha512-2KV8NhB5JqC3ky0r9PMCAZKbUHSwtEo4CwCs0KXgruG43gX5PMqDEBbVU4OUzw2MuAWUfsuFmWvEKG5QRfSnJA==}
     dependencies:
       toggle-selection: 1.0.6
+    dev: false
+
+  /cos-js-sdk-v5@1.7.0:
+    resolution: {integrity: sha512-/xiR86tOcJ448nXPkJq0lhsP/Kg4LmvcRO+C5LwrAvmTMTZE75ESjMHi7qbQVAxNPBroOvVyYR0YOin9UN8yHQ==}
+    dependencies:
+      '@xmldom/xmldom': 0.8.10
     dev: false
 
   /cross-env@7.0.3:
