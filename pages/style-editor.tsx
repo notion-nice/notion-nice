@@ -5,11 +5,31 @@ import { minimalSetup } from 'codemirror'
 import React, { useEffect, useRef } from 'react'
 
 const StyleEditor = () => {
+  const editorView = useRef<EditorView>(null)
   const editor = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     function onmessage(event: MessageEvent) {
-      console.log('notion-nice', event.origin, event.data)
+      if (event.origin !== 'https://www.notion.so') return
+      if (event.data?.s !== 'notion-nice') return
+      const cm = editorView.current
+      if (cm === null) return
+      const { type, value } = event.data
+      switch (type) {
+        case 'setDoc':
+          cm.dispatch({
+            changes: { from: 0, to: cm.state.doc.length, insert: value }
+          })
+          break
+        case 'setEditable':
+          //   cm.dispatch({
+          //     effects: EditorView.editable.set(value)
+          //   })
+          break
+
+        default:
+          break
+      }
     }
     window.addEventListener('message', onmessage)
     return () => {
@@ -41,6 +61,8 @@ const StyleEditor = () => {
       parent: editor.current
     })
 
+    editorView.current = view
+
     return () => {
       view.destroy()
     }
@@ -51,7 +73,12 @@ const StyleEditor = () => {
       <div ref={editor} className='relative flex-none w-full h-full'></div>
       <button
         onClick={() => {
-          window.parent.postMessage('close', '*')
+          const cm = editorView.current
+          if (cm === null) return
+          window.parent.postMessage(
+            { s: 'notion-nice', type: 'save', value: cm.state.doc.toString() },
+            '*'
+          )
         }}
       >
         Save
