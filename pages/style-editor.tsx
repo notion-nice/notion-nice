@@ -46,7 +46,18 @@ const StyleEditor = () => {
     }
   }, [])
 
-  return <div ref={editor} className='relative flex-none w-full h-full'></div>
+  return (
+    <div>
+      <div ref={editor} className='relative flex-none w-full h-full'></div>
+      <button
+        onClick={() => {
+          window.parent.postMessage('close', '*')
+        }}
+      >
+        Save
+      </button>
+    </div>
+  )
 }
 
 export default StyleEditor
