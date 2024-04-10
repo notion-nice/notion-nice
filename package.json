@@ -26,6 +26,9 @@
     "test:prettier": "prettier '**/*.{js,jsx,ts,tsx}' --check"
   },
   "dependencies": {
+    "@codemirror/lang-css": "^6.2.1",
+    "@codemirror/state": "^6.4.1",
+    "@codemirror/view": "^6.26.2",
     "@fisch0920/use-dark-mode": "^2.4.0",
     "@keyvhq/core": "^1.6.9",
     "@keyvhq/redis": "^1.6.10",
@@ -33,6 +36,7 @@
     "@vercel/og": "^0.0.19",
     "@vercel/postgres": "^0.7.2",
     "classnames": "^2.3.1",
+    "codemirror": "^6.0.1",
     "cos-js-sdk-v5": "^1.7.0",
     "cos-nodejs-sdk-v5": "^2.13.4",
     "date-fns": "^2.28.0",
