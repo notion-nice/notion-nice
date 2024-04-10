@@ -8,6 +8,16 @@ const StyleEditor = () => {
   const editor = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    function onmessage(event: MessageEvent) {
+      console.log('notion-nice', event.origin, event.data)
+    }
+    window.addEventListener('message', onmessage)
+    return () => {
+      window.removeEventListener('message', onmessage)
+    }
+  }, [])
+
+  useEffect(() => {
     const theme = EditorView.theme({
       '&': {
         height: '100vh',
