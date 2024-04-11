@@ -81,7 +81,7 @@ const StyleEditor = () => {
           break
         case 'selectedTheme':
           cm.dispatch({
-            effects: this.editorTheme.reconfigure(
+            effects: editorTheme.reconfigure(
               value === 'dark' ? oneDark : oneLight
             )
           })
