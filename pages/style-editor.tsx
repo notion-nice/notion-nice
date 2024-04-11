@@ -1,7 +1,7 @@
 import { css } from '@codemirror/lang-css'
+import { EditorView } from '@codemirror/view'
 import { Compartment, EditorState } from '@codemirror/state'
-import { EditorView, lineNumbers } from '@codemirror/view'
-import { oneDark } from '@codemirror/theme-one-dark'
+import { oneDarkTheme } from '@codemirror/theme-one-dark'
 import { throttle } from 'lodash-es'
 import { minimalSetup } from 'codemirror'
 import React, { useEffect, useRef } from 'react'
@@ -14,7 +14,7 @@ const StyleEditor = () => {
     const editable = true
     const enableAction = new Compartment()
     const editorTheme = new Compartment()
-    const oneLight = EditorView.theme({})
+    const oneLightTheme = EditorView.theme({})
     const theme = EditorView.theme({
       '&': {
         height: '100vh',
@@ -43,10 +43,9 @@ const StyleEditor = () => {
         css(),
         theme,
         minimalSetup,
-        lineNumbers(),
         updateListener,
         EditorView.lineWrapping,
-        editorTheme.of(oneLight),
+        editorTheme.of(oneLightTheme),
         enableAction.of([
           EditorView.editable.of(editable),
           EditorState.readOnly.of(!editable)
@@ -82,7 +81,7 @@ const StyleEditor = () => {
         case 'selectedTheme':
           cm.dispatch({
             effects: this.editorTheme.reconfigure(
-              value === 'dark' ? oneDark : oneLight
+              value === 'dark' ? oneDarkTheme : oneLightTheme
             )
           })
           break
