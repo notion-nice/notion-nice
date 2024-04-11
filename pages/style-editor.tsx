@@ -65,7 +65,8 @@ const StyleEditor = () => {
       switch (type) {
         case 'setDoc':
           cm.dispatch({
-            changes: { from: 0, to: cm.state.doc.length, insert: value }
+            changes: { from: 0, to: cm.state.doc.length, insert: value },
+            effects: [EditorView.scrollIntoView(0)]
           })
           break
         case 'setEditable':
