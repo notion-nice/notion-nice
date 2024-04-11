@@ -8,12 +8,12 @@ dependencies:
   '@codemirror/lang-css':
     specifier: ^6.2.1
     version: 6.2.1(@codemirror/view@6.26.2)
+  '@codemirror/language':
+    specifier: ^6.10.1
+    version: 6.10.1
   '@codemirror/state':
     specifier: ^6.4.1
     version: 6.4.1
-  '@codemirror/theme-one-dark':
-    specifier: ^6.1.2
-    version: 6.1.2
   '@codemirror/view':
     specifier: ^6.26.2
     version: 6.26.2
@@ -26,6 +26,9 @@ dependencies:
   '@keyvhq/redis':
     specifier: ^1.6.10
     version: 1.6.28
+  '@lezer/highlight':
+    specifier: ^1.2.0
+    version: 1.2.0
   '@tryfabric/martian':
     specifier: ^1.2.4
     version: 1.2.4
@@ -484,15 +487,6 @@ packages:
 
   /@codemirror/state@6.4.1:
     resolution: {integrity: sha512-QkEyUiLhsJoZkbumGZlswmAhA7CBU02Wrz7zvH4SrcifbsqwlXShVXg65f3v/ts57W3dqyamEriMhij1Z3Zz4A==}
-    dev: false
-
-  /@codemirror/theme-one-dark@6.1.2:
-    resolution: {integrity: sha512-F+sH0X16j/qFLMAfbciKTxVOwkdAS336b7AXTKOZhy8BR3eH/RelsnLgLFINrpST63mmN2OuwUt0W2ndUgYwUA==}
-    dependencies:
-      '@codemirror/language': 6.10.1
-      '@codemirror/state': 6.4.1
-      '@codemirror/view': 6.26.2
-      '@lezer/highlight': 1.2.0
     dev: false
 
   /@codemirror/view@6.26.2:
