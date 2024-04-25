@@ -38,6 +38,7 @@ export default siteConfig({
   // NOTE: if you enable redis, you need to set the `REDIS_HOST` and `REDIS_PASSWORD`
   // environment variables. see the readme for more info
   isRedisEnabled: false,
+  isSearchEnabled: false,
 
   // map of notion page IDs to URL paths (optional)
   // any pages defined here will override their default URL paths
@@ -45,7 +46,8 @@ export default siteConfig({
   //
   pageUrlOverrides: {
     '/privacy': '94d0ba8c65ea40e2b6455b8d1037752e',
-    '/changelog': '7cf2ecce1b4447a78ee8871a72778dc5'
+    '/changelog': '7cf2ecce1b4447a78ee8871a72778dc5',
+    '/terms-of-use': 'a811088cf9614be3aafa428a666c902b'
   },
 
   // whether to use the default notion navigation style or a custom one with links to
