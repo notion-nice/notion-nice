@@ -71,6 +71,7 @@
     "react-tweet-embed": "^2.0.0",
     "react-use": "^17.4.2",
     "rss": "^1.2.2",
+    "sharp": "0.32.6",
     "stripe": "^14.20.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
