@@ -28,6 +28,19 @@ if (
 
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
+export const createUser = async ({ userId, email, name }: any) => {
+  let customer = await getCustomerByEmail(email, userId, name)
+  if (customer?.id) return customer
+  customer = await stripe.customers.create({
+    name,
+    email,
+    metadata: { 'notion-user-id': userId }
+  })
+  console.log('createUser', customer.id)
+
+  return customer
+}
+
 export const createCustomer = async ({ userId, email, name }: any) => {
   let customer = await getCustomer(userId)
   if (customer?.id) return customer
