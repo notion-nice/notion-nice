@@ -41,7 +41,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 }
 
 export const config = {
-  runtime: 'edge',
+  runtime: 'experimental-edge',
   api: {
     bodyParser: false
   }

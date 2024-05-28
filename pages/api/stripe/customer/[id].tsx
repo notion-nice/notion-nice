@@ -47,4 +47,4 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   return res.status(405).send({ error: 'method not allowed' })
 }
 
-export const config = { runtime: 'edge' }
+export const config = { runtime: 'experimental-edge' }

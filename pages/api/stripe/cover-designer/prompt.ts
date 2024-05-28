@@ -58,4 +58,4 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 }
 
-export const config = { runtime: 'edge' }
+export const config = { runtime: 'experimental-edge' }
