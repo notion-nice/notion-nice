@@ -30,3 +30,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return res.send({ ok: false, error: { message: error.message } })
   }
 }
+
+export const config = { runtime: 'edge' }

@@ -152,3 +152,5 @@ async function getCompatibleImageUrl(
 
   return image
 }
+
+export const config = { runtime: 'edge' }

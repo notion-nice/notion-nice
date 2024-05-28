@@ -18,3 +18,5 @@ export default NextAuth({
     signIn: '/login'
   }
 })
+
+export const config = { runtime: 'edge' }

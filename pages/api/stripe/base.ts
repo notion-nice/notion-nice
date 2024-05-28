@@ -21,3 +21,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
   return res.send({ ok: true, comboList, notionClientVersion })
 }
+
+export const config = { runtime: 'edge' }
