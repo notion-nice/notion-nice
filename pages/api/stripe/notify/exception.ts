@@ -39,5 +39,3 @@ ${error.stack}
     return res.send({ ok: false, error: { message: error.message } })
   }
 }
-
-export const config = { runtime: 'experimental-edge' }
