@@ -11,7 +11,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { error } = req.body
   try {
     const content = `<font color="warning">NotionNice 异常通知</font>
-<font color="info">Name:</font> ${error.name} {request_url}
+<font color="info">Name:</font> ${error.name}
 <font color="info">Message:</font> ${error.message}
 
 \`\`\`
