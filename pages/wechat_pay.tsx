@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { loadStripe } from '@stripe/stripe-js'
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
 import { stripe } from '@/lib/stripe'
@@ -44,9 +44,6 @@ async function confirmWechatPayPayment(client_secret: string) {
           client: 'web'
         }
       }
-    },
-    {
-      handleActions: false
     }
   )
   if (error) {
@@ -54,26 +51,22 @@ async function confirmWechatPayPayment(client_secret: string) {
     throw new Error(error.message)
   }
 
-  return paymentIntent.next_action.wechat_pay_display_qr_code
-    .image_data_url as string
+  console.log('paymentIntent', paymentIntent)
+
+  return
 }
 
 const WeChatPay: React.FC<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ client_secret, errMsg }) => {
-  const [qrCode, setQrCode] = useState('')
-
   useEffect(() => {
-    confirmWechatPayPayment(client_secret).then((qrCode) => {
-      setQrCode(qrCode)
-    })
+    confirmWechatPayPayment(client_secret)
   }, [])
   return (
     <div>
       <h1>WeChat Pay Page</h1>
       <p>{client_secret}</p>
       {errMsg && <p>{errMsg}</p>}
-      {qrCode && <img src={qrCode} alt='' className='w-32 h-32' />}
     </div>
   )
 }
