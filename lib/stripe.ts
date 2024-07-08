@@ -5,7 +5,7 @@ import { sql } from '@vercel/postgres'
 
 if (
   !process.env.STRIPE_SECRET_KEY ||
-  !process.env.STRIPE_PUBLISHABLE_KEY ||
+  !process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ||
   !process.env.STRIPE_PRICE_ID
 ) {
   console.log(
@@ -16,9 +16,9 @@ if (
     ? ''
     : console.log('Add STRIPE_SECRET_KEY to your .env file.')
 
-  process.env.STRIPE_PUBLISHABLE_KEY
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
     ? ''
-    : console.log('Add STRIPE_PUBLISHABLE_KEY to your .env file.')
+    : console.log('Add NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY to your .env file.')
 
   process.env.STRIPE_PRICE_ID
     ? ''

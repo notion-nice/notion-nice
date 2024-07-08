@@ -37,6 +37,7 @@
     "@next-auth/prisma-adapter": "0.4.4-canary.81",
     "@prisma/client": "^5.13.0",
     "@radix-ui/react-slot": "^1.0.2",
+    "@stripe/stripe-js": "^4.1.0",
     "@tryfabric/martian": "^1.2.4",
     "@vercel/og": "^0.0.19",
     "@vercel/postgres": "^0.7.2",
