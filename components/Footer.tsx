@@ -15,6 +15,7 @@ import * as config from '@/lib/config'
 import { useDarkMode } from '@/lib/use-dark-mode'
 
 import styles from './styles.module.css'
+import { cn } from '@/lib/utils'
 
 // TODO: merge the data and icons from PageSocial with the social links in Footer
 
@@ -37,8 +38,11 @@ export const FooterImpl: React.FC = () => {
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.copyright}>
+      <div className={cn(styles.copyright, 'flex flex-col')}>
         Copyright {currentYear} {config.author}
+        <a href='https://beian.miit.gov.cn/' target='_blank' rel='noreferrer'>
+          粤ICP备2024292309号-1
+        </a>
       </div>
 
       <div className={styles.settings}>
