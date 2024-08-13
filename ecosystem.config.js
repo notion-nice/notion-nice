@@ -2,8 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'notion-nice-webapp',
-      exec_mode: 'cluster',
-      instances: 'max', // Or a number of instances
+      exec_mode: 'fork',
       script: 'node_modules/next/dist/bin/next',
       args: 'start',
     }

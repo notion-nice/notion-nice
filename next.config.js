@@ -20,6 +20,14 @@ module.exports = withBundleAnalyzer({
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
   },
+  rewrites: async () => {
+    return [
+      {
+        source: "/api/mp/:path*",
+        destination: `http://api.notion-nice.com/mp/:path*`,
+      },
+    ];
+  },
   async headers() {
     return [
       {
