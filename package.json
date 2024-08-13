@@ -13,6 +13,7 @@
     "dev": "next dev -p 4242",
     "build": "next build",
     "start": "next start",
+    "restart": "pm2 restart ecosystem.config.js",
     "deploy": "next build && pm2 startOrRestart ecosystem.config.js",
     "deps": "run-s deps:*",
     "deps:update": "[ -z $GITHUB_ACTIONS ] && yarn add notion-client notion-types notion-utils react-notion-x || echo 'Skipping deps:update on CI'",
